@@ -585,6 +585,9 @@ choice BOARD_TYPE
     config BOARD_TYPE_WK_ESP32S3_DEV
         bool "WK ESP32-S3 Dev Board (维控智能开发板)"
         depends on IDF_TARGET_ESP32S3
+    config BOARD_TYPE_XIAO_ESP32S3_SENSE
+        bool "Seeed Studio XIAO ESP32S3 Sense"
+        depends on IDF_TARGET_ESP32S3
     config BOARD_TYPE_XMINI_C3
         bool "Xmini C3"
         depends on IDF_TARGET_ESP32C3
