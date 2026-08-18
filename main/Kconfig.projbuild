@@ -968,6 +968,16 @@ config USE_SERVER_AEC
     help
         To work perperly, server-side AEC requires server support
 
+config USE_HARDWARE_AEC
+    bool "Enable Hardware AEC (mic outputs clean audio)"
+    default n
+    depends on !USE_DEVICE_AEC && !USE_SERVER_AEC
+    help
+        Set this if your microphone codec already performs hardware AEC
+        and outputs clean audio. This enables realtime listening mode
+        without device-side software AEC. Cannot be enabled together
+        with USE_DEVICE_AEC or USE_SERVER_AEC.
+
 config USE_AUDIO_DEBUGGER
     bool "Enable Audio Debugger"
     default n
