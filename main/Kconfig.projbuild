@@ -968,15 +968,16 @@ config USE_SERVER_AEC
     help
         To work perperly, server-side AEC requires server support
 
-config USE_HARDWARE_AEC
-    bool "Enable Hardware AEC (mic outputs clean audio)"
+config USE_MANUAL_LISTENING_MODE
+    bool "Use Manual Stop Listening Mode"
     default n
-    depends on !USE_DEVICE_AEC && !USE_SERVER_AEC
     help
-        Set this if your microphone codec already performs hardware AEC
-        and outputs clean audio. This enables realtime listening mode
-        without device-side software AEC. Cannot be enabled together
-        with USE_DEVICE_AEC or USE_SERVER_AEC.
+        When enabled, conversations started by wake word or the chat button
+        use manual-stop listening mode: after TTS playback finishes, the
+        device returns to idle and waits for the next wake word or button
+        press, instead of continuing to listen automatically.
+        Press-to-talk buttons (StartListening) are unaffected; they already
+        use manual-stop mode.
 
 config USE_AUDIO_DEBUGGER
     bool "Enable Audio Debugger"

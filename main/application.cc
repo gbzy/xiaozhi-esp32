@@ -24,16 +24,10 @@ Application::Application() {
 
 #if CONFIG_USE_DEVICE_AEC && CONFIG_USE_SERVER_AEC
 #error "CONFIG_USE_DEVICE_AEC and CONFIG_USE_SERVER_AEC cannot be enabled at the same time"
-#elif CONFIG_USE_DEVICE_AEC && CONFIG_USE_HARDWARE_AEC
-#error "CONFIG_USE_DEVICE_AEC and CONFIG_USE_HARDWARE_AEC cannot be enabled at the same time"
-#elif CONFIG_USE_SERVER_AEC && CONFIG_USE_HARDWARE_AEC
-#error "CONFIG_USE_SERVER_AEC and CONFIG_USE_HARDWARE_AEC cannot be enabled at the same time"
 #elif CONFIG_USE_DEVICE_AEC
     aec_mode_ = kAecOnDeviceSide;
 #elif CONFIG_USE_SERVER_AEC
     aec_mode_ = kAecOnServerSide;
-#elif CONFIG_USE_HARDWARE_AEC
-    aec_mode_ = kAecOff;
 #else
     aec_mode_ = kAecOff;
 #endif
@@ -1037,8 +1031,8 @@ void Application::SetListeningMode(ListeningMode mode) {
 }
 
 ListeningMode Application::GetDefaultListeningMode() const {
-#if CONFIG_USE_HARDWARE_AEC
-    return kListeningModeRealtime;
+#if CONFIG_USE_MANUAL_LISTENING_MODE
+    return kListeningModeManualStop;
 #endif
     return aec_mode_ == kAecOff ? kListeningModeAutoStop : kListeningModeRealtime;
 }
